@@ -8,9 +8,7 @@
  
             // Tell the applet to post the voice recording to the
             // backend PHP code
-            var ret = applet.sendGongRequest(
-                    "PostToForm", "knobson", "voicefile",
-                    "", "temp");
+            var ret = applet.sendGongRequest("PostToForm", "knobson?method=post&<%= request_forgery_protection_token.to_s %>=<%= form_authenticity_token %>", "voicefile", "", "temp");
             if (ret == null || ret == "")
                 alert("Failed to submit the voice recording!");
             else
@@ -21,7 +19,7 @@
     </head>
     <body>
         <p>Please submit your voice using the NanoGong applet below.</p>
-        <applet id="nanogong" archive="/applets/nanogong.jar"
+        <applet id="nanogong" archive="/nanogong/nanogong.jar"
                 code="gong.NanoGong" width="180" height="40"></applet>
         <form>
             <input type="button" value="Submit!"
