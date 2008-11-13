@@ -1,25 +1,23 @@
-<html> 
-<head> 
-	<title>NanoGong Example</title> 
-	<script language="JavaScript"> 
-		function submitVoice() { 
-		// Find the applet object 
-		var applet = document.getElementById("nanogong"); 
-		var ret = applet.sendGongRequest( "PostToForm", "http://theredpost.dev/record/submit_file.html", "voicefile", "", "temp");
-	}
-</script> 
-</head> 
+<html>
+<head>
+	<title>NanoGong Example</title>
+	<script language="JavaScript">
+	function submitVoice() {
+		// Find the applet object
+		var applet = document.getElementById("nanogong");
+		// Tell the applet to post the voice recording to the
 
-
+		var ret = applet.sendGongRequest("PostToForm", "submit_file", "voicefile", "", "temp");
+		if (ret == null || ret == "")
+			alert("Failed to submit the voice recording!");
+		else
+			alert(ret)
+			alert("Voice recording has been submitted!"); }
+	</script> 
 </head>
-
-
 <body>
-	
-	<applet id="nanogong" archive="/nanogong/nanogong.jar" code="gong.NanoGong" width="180" height="40">
-		<param name="ShowSaveButton" value="false" />
-		<param name="ShowSpeedButton" value="false" />
-	</applet>
+	<p>Please submit your voice using the NanoGong applet below.</p>
+	<applet id="nanogong" archive="/nanogong/nanogong.jar" code="gong.NanoGong" width="180" height="40"></applet>
 	
 	<form>
 		<input type="button" value="Submit!" onclick="submitVoice()" />
